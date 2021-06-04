@@ -26,6 +26,7 @@ namespace Container
             services.AddDbContext<AppDbContext>(
              options => options.UseSqlServer(
              Configuration.GetConnectionString("ContainerDatabase")
+                 //Configuration.GetConnectionString("ContainerDatabase")
              ));
 
             services.AddControllersWithViews();

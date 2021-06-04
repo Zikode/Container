@@ -8,7 +8,7 @@ namespace Repository.Repo
 {
     public interface IUnitOfWorkRepository : IDisposable
     {
-        IContainerRepository Container { get; }
+        IContainerRepository _container { get; }
         int Complete();
     }
 }

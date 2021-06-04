@@ -44,7 +44,7 @@ namespace Repository.Repo
         }
         public IQueryable<Containerobj> GetAll()
         {
-            return  _dapperRepository.Query<Containerobj>("[dbo].[GetListOfContainers]");
+            return  _dapperRepository.Query<Containerobj>("GetListOfContainers");
         }
 
         public int Update(Containerobj entity)

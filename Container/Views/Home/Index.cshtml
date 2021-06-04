@@ -1,8 +1,62 @@
-﻿@{
+﻿@model IEnumerable<DAL.Models.Containerobj>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+            </div>
+
+            <table id="table_id" class="table">
+                <thead>
+                    <tr>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.ContainerID)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.ContainerNumber)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Code)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Color)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.DateAdded)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ContainerID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ContainerNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Code)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Color)
+                            </td> 
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateAdded)
+                            </td>
+                        </tr>
+                    }
+        </tbody>
+    </table>
+    </div>
+    </div>
+        </div>

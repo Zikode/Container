@@ -22,12 +22,9 @@ namespace Container.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var results = _unitOfWorks._container.GetAll();
+            return View(results);
         }
 
-        public IQueryable<Containerobj> GetAll()
-        {
-            return _unitOfWorks.Container.GetAll();
-        }
     }
 }
