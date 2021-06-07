@@ -42,7 +42,9 @@
                                 @Html.DisplayFor(modelItem => item.DateAdded)
                             </td>
                             <td>
-                                <a asp-action="UpdateContainer" asp-route-id="@item.ContainerID">Edit</a>
+                                <a asp-action="Edit" asp-route-id="@item.ContainerID">Edit</a>
+                                |
+                                <a asp-action="Delete" asp-route-id="@item.ContainerID">Delete</a>
                             </td>
                         </tr>
                     }

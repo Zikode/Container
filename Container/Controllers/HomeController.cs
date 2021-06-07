@@ -46,7 +46,7 @@ namespace Container.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult UpdateContainer(int Id)
+        public IActionResult Edit(int Id)
         {
             var container = _unitOfWorks._container.Get(Id);
             if(container == null)
@@ -59,7 +59,8 @@ namespace Container.Controllers
             }
         }
 
-        public IActionResult UpdateContainerById(Containerobj container)
+        [HttpPost]
+        public IActionResult Edit(Containerobj container)
         {
             if (container == null)
             {
@@ -72,5 +73,31 @@ namespace Container.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public IActionResult Delete(int Id)
+        {
+            if(Id <= 0)
+            {
+                return NotFound();
+            }
+            else
+            {
+                _unitOfWorks._container.Delete(Id);
+                var rssults = _unitOfWorks.Complete();
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        public IActionResult GetContainerByContainerNumber(int containerNumber)
+        {
+            if(containerNumber == 0)
+            {
+                return NotFound();
+            }
+            else
+            {
+                _unitOfWorks._container.GetContainerByContainerNumber(containerNumber);
+            }
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

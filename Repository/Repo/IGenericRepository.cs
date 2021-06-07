@@ -10,7 +10,7 @@ namespace Repository.Repo
     {
         int Add(T entity);
         IQueryable<T> GetAll();
-        IEnumerable<T> Get(int Id);
+        T Get(int Id);
         int Update(T entity);
         int Delete(int Id);
     }

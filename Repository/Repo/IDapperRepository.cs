@@ -9,7 +9,7 @@ namespace Repository.Repo
    public interface IDapperRepository
     {
         IQueryable<T> Query<T>(string sqlCommand);
-        IEnumerable<T> QueryWithParameter<T>(string sqlCommand, object parameters);
+        T QueryWithParameter<T>(string sqlCommand, object parameters);
         int ExecuteWithParameters(string sqlCommand, object parameters);
         int Excute(string sqlCommand);
     }

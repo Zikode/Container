@@ -13,8 +13,6 @@ namespace Repository.Repo
 
         public IContainerRepository _container { get; }
 
-      //  public IContainerRepository Container => throw new NotImplementedException();
-
         public UnitOfWorkRepository(AppDbContext context, IContainerRepository containerRepository)
         {
             this._context = context;
