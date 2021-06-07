@@ -7,17 +7,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div>
-            </div>
-
             <table id="table_id" class="table">
                 <thead>
                     <tr>
-
-                        <th>
-                            @Html.DisplayNameFor(model => model.ContainerID)
-                        </th>
-
                         <th>
                             @Html.DisplayNameFor(model => model.ContainerNumber)
                         </th>
@@ -37,10 +29,6 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ContainerID)
-                            </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.ContainerNumber)
                             </td>
@@ -49,14 +37,17 @@
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Color)
-                            </td> 
+                            </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.DateAdded)
                             </td>
+                            <td>
+                                <a asp-action="UpdateContainer" asp-route-id="@item.ContainerID">Edit</a>
+                            </td>
                         </tr>
                     }
-        </tbody>
-    </table>
-    </div>
+                </tbody>
+            </table>
+        </div>
     </div>
         </div>

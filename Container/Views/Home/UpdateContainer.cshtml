@@ -1,0 +1,47 @@
+﻿@model IEnumerable<DAL.Models.Containerobj>
+
+@{
+    ViewData["Title"] = "UpdateContainer";
+}
+
+<h1>UpdateContainer</h1>
+
+<h4>Containerobj</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="UpdateContainerById">
+            @foreach (var item in Model)
+            {
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="@item.ContainerID" value="@item.ContainerID"/>
+            <div class="form-group">
+                <label asp-for="@item.ContainerNumber" class="control-label"></label>
+                <input asp-for="@item.ContainerNumber" class="form-control"  value="@item.ContainerNumber"/>
+                <span asp-validation-for="@item.ContainerNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@item.Code" class="control-label"></label>
+                <input asp-for="@item.Code" class="form-control" value="@item.Code"/>
+                <span asp-validation-for="@item.Code" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@item.Color" class="control-label"></label>
+                <input asp-for="@item.Color" class="form-control" value="@item.Color"/>
+                <span asp-validation-for="@item.Color" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+            }
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

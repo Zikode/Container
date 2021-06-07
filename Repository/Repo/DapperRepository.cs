@@ -30,14 +30,13 @@ namespace Repository.Repo
                 return result;
             }
         }
-
-        public IQueryable<T> QueryWithParameter<T>(string sqlCommand, object parameters)
+       public IEnumerable<T> QueryWithParameter<T>(string sqlCommand, object parameters)
         {
             var connection = new SqlConnection(_configuration.GetConnectionString("ContainerDatabase"));
             using (connection)
             {
                 connection.Open();
-            var results = connection.QueryAsync<T>(sqlCommand, parameters, commandType: CommandType.StoredProcedure).Result.AsQueryable();
+            var results = connection.QueryAsync<T>(sqlCommand, parameters, commandType: CommandType.StoredProcedure).Result.AsEnumerable();
             return results;
             }
         }

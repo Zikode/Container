@@ -26,5 +26,51 @@ namespace Container.Controllers
             return View(results);
         }
 
+        public IActionResult InsertNewContainer()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult InsertNewContainer(Containerobj container)
+        {
+            if (container == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                var result = _unitOfWorks._container.Add(container);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        public IActionResult UpdateContainer(int Id)
+        {
+            var container = _unitOfWorks._container.Get(Id);
+            if(container == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return View(container);
+            }
+        }
+
+        public IActionResult UpdateContainerById(Containerobj container)
+        {
+            if (container == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                var result = _unitOfWorks._container.Update(container);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
     }
 }
