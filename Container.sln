@@ -9,6 +9,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{5
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{214F82E8-B77B-4B61-9267-383F295D7C30}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sql", "Sql", "{9CFEA8AD-181B-45BB-9A9A-B33F1A976B67}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Videos\ContainerTbl.sql = ..\..\..\Videos\ContainerTbl.sql
+		..\..\..\Videos\CreateContainer.sql = ..\..\..\Videos\CreateContainer.sql
+		..\..\..\Videos\DeleteContainerByContainerId].sql = ..\..\..\Videos\DeleteContainerByContainerId].sql
+		..\..\..\Videos\GetContainerByContainerNumber.sql = ..\..\..\Videos\GetContainerByContainerNumber.sql
+		..\..\..\Videos\GetContainerById.sql = ..\..\..\Videos\GetContainerById.sql
+		..\..\..\Videos\GetListOfContainers.sql = ..\..\..\Videos\GetListOfContainers.sql
+		..\..\..\Videos\UpdateContainerByContainerId.sql = ..\..\..\Videos\UpdateContainerByContainerId.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
