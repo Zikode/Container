@@ -26,17 +26,17 @@ namespace Repository.Repo
             dbparams.Add("ContainerNumber", entity.ContainerNumber, DbType.Int32);
             dbparams.Add("Code", entity.Code, DbType.String);
             dbparams.Add("Color", entity.Color, DbType.String);
-            var response =  _dapperRepository.ExecuteWithParameters("[dbo].[CreateContainer]", dbparams);
-            return response;
+            dbparams.Add("ContainerId", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            _dapperRepository.ExecuteWithParameters("[dbo].[CreateContainer]", dbparams);
+            return dbparams.Get<int>("ContainerId");
         }
         public int Delete(int Id)
         {
             var dbparams = new DynamicParameters();
             dbparams.Add("ContainerId", Id, DbType.Int32);
-            var response =  _dapperRepository.ExecuteWithParameters("[dbo].[DeleteContainerByContainerNumber]", dbparams);
-            return response;
+              return _dapperRepository.ExecuteWithParameters("[dbo].[DeleteContainerByContainerId]", dbparams);
         }
-        public IQueryable<Containerobj> Get(int Id)
+        public Containerobj Get(int Id)
         {
             var dbparams = new DynamicParameters();
             dbparams.Add("ContainerId", Id, DbType.Int32);
@@ -44,22 +44,23 @@ namespace Repository.Repo
         }
         public IQueryable<Containerobj> GetAll()
         {
-            return  _dapperRepository.Query<Containerobj>("[dbo].[GetListOfContainers]");
+            return  _dapperRepository.Query<Containerobj>("GetListOfContainers");
         }
 
         public int Update(Containerobj entity)
         {
             var dbparams = new DynamicParameters();
-            dbparams.Add("ContainerNumber", entity.ContainerNumber, DbType.Int32);
+            dbparams.Add("ContainerId", entity.ContainerID, DbType.Int32);
             dbparams.Add("Code", entity.Code, DbType.String);
             dbparams.Add("Color", entity.Color, DbType.String);
-            return  _dapperRepository.ExecuteWithParameters("[dbo].[UpdateContainerByContainerNumber]", dbparams);
+            return  _dapperRepository.ExecuteWithParameters("[dbo].[UpdateContainerByContainerId]", dbparams);
         }
-        public IQueryable<Containerobj> GetContainerByContainerNumber(int containerNumber)
+        public Containerobj GetContainerByContainerNumber(int containerNumber)
         {
             var dbparams = new DynamicParameters();
             dbparams.Add("ContainerNumber", containerNumber, DbType.Int32);
-            return  _dapperRepository.QueryWithParameter<Containerobj>("[dbo].[GetContainerByContainerNumber]", dbparams);
+            return _dapperRepository.QueryWithParameter<Containerobj>("[dbo].[GetContainerByContainerNumber]", dbparams);
         }
+
     }
 }

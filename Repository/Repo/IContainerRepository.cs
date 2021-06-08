@@ -9,6 +9,6 @@ namespace Repository.Repo
 {
     public interface IContainerRepository : IGenericRepository<Containerobj>
     {
-        IQueryable<Containerobj> GetContainerByContainerNumber(int containerNumber);
+        Containerobj GetContainerByContainerNumber(int containerNumber);
     }
 }

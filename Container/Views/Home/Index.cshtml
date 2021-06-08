@@ -1,8 +1,86 @@
-﻿@{
+﻿@model IEnumerable<DAL.Models.Containerobj>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container">
+   
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginForm())
+            {
+                <p>
+                    @Html.TextBox("keyWord")
+                    <input type="submit" value="Search" />
+                </p>
+            }
+            @if (TempData["Message"] != null)
+            {
+        <button type="button" class="@TempData["Color"]" id="message">
+            @TempData["Message"] <span class="badge bg-secondary">!</span>
+        </button>
+            }
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">
+                            @Html.ActionLink("Container Number", "Index", new { sortOrder = ViewBag.NameSortParm })
+                        </th>
+                        <th scope="col">
+                            @Html.ActionLink("Code", "Index", new { sortOrder = ViewBag.NameSortParm })
+                        </th>
+                        <th scope="col">
+                            @Html.ActionLink("Color", "Index", new { sortOrder = ViewBag.NameSortParm })
+                        </th>
+                        <th scope="col">
+                            @Html.ActionLink("Date Added", "Index", new { sortOrder = ViewBag.NameSortParm })
+                        </th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ContainerNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Code)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Color)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateAdded)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.ContainerID">Edit</a>
+                                |
+                                <a asp-action="Delete" asp-route-id="@item.ContainerID">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+   
 </div>
+
+<style>
+   
+    button#message {
+        float: right;
+        margin: -44px -1px 0px 0px;
+        padding: 7px 6px 7px 9px;
+    }
+
+    form {
+        width: 25%;
+        margin: 10px 0px -11px -1px;
+    }
+</style>

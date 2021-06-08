@@ -3,11 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Container", "Container\Container.csproj", "{CAAF3B9E-DDBD-4A3B-BC6B-FEB81E0E2915}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Container", "Container\Container.csproj", "{CAAF3B9E-DDBD-4A3B-BC6B-FEB81E0E2915}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{50D0E864-82BB-466D-9272-30A8C4DD1F08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{50D0E864-82BB-466D-9272-30A8C4DD1F08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{214F82E8-B77B-4B61-9267-383F295D7C30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{214F82E8-B77B-4B61-9267-383F295D7C30}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sql", "Sql", "{9CFEA8AD-181B-45BB-9A9A-B33F1A976B67}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Videos\ContainerTbl.sql = ..\..\..\Videos\ContainerTbl.sql
+		..\..\..\Videos\CreateContainer.sql = ..\..\..\Videos\CreateContainer.sql
+		..\..\..\Videos\DeleteContainerByContainerId].sql = ..\..\..\Videos\DeleteContainerByContainerId].sql
+		..\..\..\Videos\GetContainerByContainerNumber.sql = ..\..\..\Videos\GetContainerByContainerNumber.sql
+		..\..\..\Videos\GetContainerById.sql = ..\..\..\Videos\GetContainerById.sql
+		..\..\..\Videos\GetListOfContainers.sql = ..\..\..\Videos\GetListOfContainers.sql
+		..\..\..\Videos\UpdateContainerByContainerId.sql = ..\..\..\Videos\UpdateContainerByContainerId.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
