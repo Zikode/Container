@@ -26,7 +26,9 @@ namespace Repository.Repo
             dbparams.Add("ContainerNumber", entity.ContainerNumber, DbType.Int32);
             dbparams.Add("Code", entity.Code, DbType.String);
             dbparams.Add("Color", entity.Color, DbType.String);
-            var response =  _dapperRepository.ExecuteWithParameters("[dbo].[CreateContainer]", dbparams);
+            dbparams.Add("ContainerId", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            _dapperRepository.ExecuteWithParameters("[dbo].[CreateContainer]", dbparams);
+            var response = dbparams.Get<int>("ContainerId");
             return response;
         }
         public int Delete(int Id)

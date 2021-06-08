@@ -7,22 +7,31 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <table id="table_id" class="table">
-                <thead>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </nav>
+            <table class="table">
+                <thead class="thead-dark">
                     <tr>
-                        <th>
+                        <th scope="col">
                             @Html.DisplayNameFor(model => model.ContainerNumber)
                         </th>
-                        <th>
+                        <th scope="col">
                             @Html.DisplayNameFor(model => model.Code)
                         </th>
-                        <th>
+                        <th scope="col">
                             @Html.DisplayNameFor(model => model.Color)
                         </th>
-
-                        <th>
+                        <th scope="col">
                             @Html.DisplayNameFor(model => model.DateAdded)
                         </th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,4 +61,32 @@
             </table>
         </div>
     </div>
+
+    @if (TempData["Message"] != null)
+    {
+        <div id="message">
+                @TempData["Message"]
         </div>
+    }
+</div>
+
+<style>
+    ul.pagination {
+        padding: 6px 0px 0px 836px;
+        margin: 6px 5px 0px 0px;
+        width: 100%;
+    }
+
+    div#message {
+        background: green;
+        width: 30%;
+        padding: 11px 0px 12px 37px;
+        text-align: center;
+        color: white;
+        font-weight: bolder;
+    }
+</style>
+
+<script>
+    toast.show();
+</script>

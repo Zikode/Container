@@ -22,6 +22,7 @@ namespace Container.Controllers
 
         public IActionResult Index()
         {
+
             var results = _unitOfWorks._container.GetAll();
             return View(results);
         }
@@ -41,9 +42,18 @@ namespace Container.Controllers
             }
             else
             {
-                var result = _unitOfWorks._container.Add(container);
+                var check = _unitOfWorks._container.Add(container);
+                if (check <= 0)
+                {
+                    TempData["Message"] = "Container not saved succesfully";
+                    return View();
+                }
+                else
+                {
+                    TempData["Message"] = "Container saved succesfully";
+                    return RedirectToAction("Index", "Home");
+                }
             }
-            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult Edit(int Id)
@@ -68,8 +78,9 @@ namespace Container.Controllers
             }
             else
             {
-                var result = _unitOfWorks._container.Update(container);
+                _unitOfWorks._container.Update(container);
             }
+            TempData["Message"] = "Container updated succesfully";
             return RedirectToAction("Index", "Home");
         }
 
@@ -82,7 +93,6 @@ namespace Container.Controllers
             else
             {
                 _unitOfWorks._container.Delete(Id);
-                var rssults = _unitOfWorks.Complete();
             }
             return RedirectToAction("Index", "Home");
         }
