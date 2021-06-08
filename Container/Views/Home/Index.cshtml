@@ -5,31 +5,36 @@
 }
 
 <div class="container">
+   
     <div class="row">
         <div class="col-md-12">
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                </ul>
-            </nav>
+            @using (Html.BeginForm())
+            {
+                <p>
+                    @Html.TextBox("keyWord")
+                    <input type="submit" value="Search" />
+                </p>
+            }
+            @if (TempData["Message"] != null)
+            {
+        <button type="button" class="@TempData["Color"]" id="message">
+            @TempData["Message"] <span class="badge bg-secondary">!</span>
+        </button>
+            }
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">
-                            @Html.DisplayNameFor(model => model.ContainerNumber)
+                            @Html.ActionLink("Container Number", "Index", new { sortOrder = ViewBag.NameSortParm })
                         </th>
                         <th scope="col">
-                            @Html.DisplayNameFor(model => model.Code)
+                            @Html.ActionLink("Code", "Index", new { sortOrder = ViewBag.NameSortParm })
                         </th>
                         <th scope="col">
-                            @Html.DisplayNameFor(model => model.Color)
+                            @Html.ActionLink("Color", "Index", new { sortOrder = ViewBag.NameSortParm })
                         </th>
                         <th scope="col">
-                            @Html.DisplayNameFor(model => model.DateAdded)
+                            @Html.ActionLink("Date Added", "Index", new { sortOrder = ViewBag.NameSortParm })
                         </th>
                         <th scope="col"></th>
                     </tr>
@@ -59,34 +64,23 @@
                     }
                 </tbody>
             </table>
+
         </div>
     </div>
 
-    @if (TempData["Message"] != null)
-    {
-        <div id="message">
-                @TempData["Message"]
-        </div>
-    }
+   
 </div>
 
 <style>
-    ul.pagination {
-        padding: 6px 0px 0px 836px;
-        margin: 6px 5px 0px 0px;
-        width: 100%;
+   
+    button#message {
+        float: right;
+        margin: -44px -1px 0px 0px;
+        padding: 7px 6px 7px 9px;
     }
 
-    div#message {
-        background: green;
-        width: 30%;
-        padding: 11px 0px 12px 37px;
-        text-align: center;
-        color: white;
-        font-weight: bolder;
+    form {
+        width: 25%;
+        margin: 10px 0px -11px -1px;
     }
 </style>
-
-<script>
-    toast.show();
-</script>

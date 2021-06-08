@@ -4,25 +4,14 @@
     ViewData["Title"] = "UpdateContainer";
 }
 
-<h1>UpdateContainer</h1>
-
-<h4>Containerobj</h4>
-<hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4" style="background: darkgray; position: absolute; margin: 44px 0px 0px 258px;">
 
         @using (Html.BeginForm())
         {
             <div class="form-horizontal">
                 <h4>Container</h4>
                 @Html.HiddenFor(model => model.ContainerID)
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ContainerNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.ContainerNumber, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.ContainerNumber, "", new { @class = "text-danager" })
-                    </div>
-                </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
@@ -39,7 +28,13 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Save" class="btn btn-default" />
+                        <input type="submit" value="Save" class="btn btn-success" />
+                    </div>
+                    
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <a asp-action="Index">Back to List</a>
                     </div>
                 </div>
             </div>
@@ -53,9 +48,7 @@
     }
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 <style>
     div#message {
@@ -65,6 +58,11 @@
         text-align: center;
         color: white;
         font-weight: bolder;
+    }
+
+    form {
+        margin: 25px 26px 26px 0px;
+        position: unset;
     }
 </style>
 @section Scripts {

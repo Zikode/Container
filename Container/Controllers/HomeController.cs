@@ -20,15 +20,55 @@ namespace Container.Controllers
             _unitOfWorks = unitOfWork;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string sortOrder, string keyWord, string filiter, int? pagenumber)
         {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Containernumber_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (keyWord != null)
+            {
+                pagenumber = 1;
+            }
+            else
+            {
+                keyWord = filiter;
+            }
+
+            ViewBag.CurrentFilter = keyWord;
 
             var results = _unitOfWorks._container.GetAll();
+
+            if (!String.IsNullOrEmpty(keyWord))
+            {
+                results = results.Where(s => s.ContainerNumber.ToString().Contains(keyWord)
+                                       || s.Code.Contains(keyWord));
+            }
+            switch (sortOrder)
+            {
+                case "Containernumber_desc":
+                    results = results.OrderByDescending(s => s.ContainerNumber);
+                    break;
+                case "Code":
+                    results = results.OrderByDescending(s => s.Code);
+                    break;
+                case "color":
+                    results = results.OrderByDescending(s => s.DateAdded);
+                    break;
+                case "date_desc":
+                    results = results.OrderByDescending(s => s.DateAdded);
+                    break;
+                default:
+                    results = results.OrderByDescending(s => s.ContainerID);
+                    break;
+            }
+            TempData["isAdd"] = null;
             return View(results);
         }
 
-        public IActionResult InsertNewContainer()
+    public IActionResult InsertNewContainer()
         {
+            TempData["isAdd"] = "isAdd";
             return View();
         }
 
@@ -46,14 +86,15 @@ namespace Container.Controllers
                 if (check <= 0)
                 {
                     TempData["Message"] = "Container not saved succesfully";
-                    return View();
+                    TempData["Color"] = "btn btn-danger";
                 }
                 else
                 {
                     TempData["Message"] = "Container saved succesfully";
-                    return RedirectToAction("Index", "Home");
+                    TempData["Color"] = "btn btn-success";
                 }
             }
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult Edit(int Id)
@@ -78,9 +119,18 @@ namespace Container.Controllers
             }
             else
             {
-                _unitOfWorks._container.Update(container);
+             var check = _unitOfWorks._container.Update(container);
+                if (check <= 0)
+                {
+                    TempData["Message"] = "Container not updated succesfully";
+                    TempData["Color"] = "btn btn-danger";
+                }
+                else
+                {
+                    TempData["Message"] = "Container updated succesfully";
+                    TempData["Color"] = "btn btn-success";
+                }
             }
-            TempData["Message"] = "Container updated succesfully";
             return RedirectToAction("Index", "Home");
         }
 
@@ -88,10 +138,14 @@ namespace Container.Controllers
         {
             if(Id <= 0)
             {
+                TempData["Message"] = "Container not updated succesfully";
+                TempData["Color"] = "btn btn-danger";
                 return NotFound();
             }
             else
             {
+                TempData["Message"] = $"Container {Id} deleted succesfully";
+                TempData["Color"] = "btn btn-danger";
                 _unitOfWorks._container.Delete(Id);
             }
             return RedirectToAction("Index", "Home");
