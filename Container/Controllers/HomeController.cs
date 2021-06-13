@@ -145,7 +145,7 @@ namespace Container.Controllers
             else
             {
                 TempData["Message"] = $"Container {Id} deleted succesfully";
-                TempData["Color"] = "btn btn-danger";
+                TempData["Color"] = "btn btn-success";
                 _unitOfWorks._container.Delete(Id);
             }
             return RedirectToAction("Index", "Home");

@@ -34,7 +34,9 @@ namespace Repository.Repo
         {
             var dbparams = new DynamicParameters();
             dbparams.Add("ContainerId", Id, DbType.Int32);
-              return _dapperRepository.ExecuteWithParameters("[dbo].[DeleteContainerByContainerId]", dbparams);
+            dbparams.Add("RowCount", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            _dapperRepository.ExecuteWithParameters("[dbo].[DeleteContainerByContainerId]", dbparams);
+            return dbparams.Get<int>("RowCount");
         }
         public Containerobj Get(int Id)
         {
@@ -53,7 +55,9 @@ namespace Repository.Repo
             dbparams.Add("ContainerId", entity.ContainerID, DbType.Int32);
             dbparams.Add("Code", entity.Code, DbType.String);
             dbparams.Add("Color", entity.Color, DbType.String);
-            return  _dapperRepository.ExecuteWithParameters("[dbo].[UpdateContainerByContainerId]", dbparams);
+            dbparams.Add("RowCount", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            _dapperRepository.ExecuteWithParameters("[dbo].[UpdateContainerByContainerId]", dbparams);
+            return dbparams.Get<int>("RowCount");
         }
         public Containerobj GetContainerByContainerNumber(int containerNumber)
         {
